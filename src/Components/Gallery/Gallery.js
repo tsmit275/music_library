@@ -1,9 +1,12 @@
-import GalleryItem from "./GalleryItem"
+import GalleryItem from './GalleryItem'
 
-function Gallery () {
+function Gallery ({ data }) {
+    const display = data.map(item => {
+        return <GalleryItem key={item.trackId} item={item} />
+    }) 
     return (
         <div>
-           <GalleryItem />
+            {display}
         </div>
     )
 }
