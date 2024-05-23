@@ -1,25 +1,26 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function GalleryItem(props) {
     let [view, setView] = useState(false)
 
     const simpleStyle = {
-        'width': '25vw',
-        'height': '20vh',
-        'border': '1px solid black',
-        'margin': '2px'
-    }
+        width: '25vw',
+        height: '20vh',
+        border: '1px solid black',
+        margin: '2px',
+    };
     
     const detailStyle = {
-        'width': '80vw',
-        'height': '20vh',
-        'border': '1px solid black',
-        'margin': '2px',
-        'backgroundImage': `url(${props.item.artworkUrl100})`,
-        'backgroundRepeat': 'no-repeat',
-        'backgroundSize': 'cover',
-        'color': 'yellow'
-    }
+        width: '80vw',
+        height: '20vh',
+        border: '1px solid black',
+        margin: '2px',
+        backgroundImage: `url(${props.item.artworkUrl100})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        color: 'yellow',
+    };
 
     const simpleView = () => {
         return (
@@ -37,19 +38,18 @@ function GalleryItem(props) {
                 <h3>{props.item.collectionName}</h3>
                 <h4>{props.item.primaryGenreName}</h4>
                 <h4>{props.item.releaseDate}</h4>
+                <Link to={`/album/${props.item.collectionId}`}>View Album</Link>
+                <br />
+                <Link to={`/artist/${props.item.artistId}`}>View Artist</Link>
             </div>
         )
     }
 
     return (
-        <div onClick={() => setView(!view)}
-            style={{'display': 'inline-block'}}>
-        
-            {/* This simple ternary shows the simple view when 'view' is false! */}
+        <div onClick={() => setView(!view)} style={{ display: 'inline-block' }}>
             {view ? detailView() : simpleView()}
-
         </div>
     )
-
 }
+
 export default GalleryItem

@@ -1,32 +1,20 @@
+// SeachBar.js
 import { useState } from 'react'
 
- 
-
-function SearchBar ({ handleSearch}) {
-
-    const [searchTerm,setSearchTerm] = useState('')
-
- 
+function SeachBar(props) {
+    let [searchTerm, setSearchTerm] = useState('')
 
     return (
+        <form onSubmit={(e) => props.handleSearch(e, searchTerm)}>
 
-        <form onSubmit={(e) => handleSearch(e, searchTerm)}>
+            <input type="text" placeholder="Enter a search term here" onChange={
+                (e) => setSearchTerm(e.target.value)
+            }/>
 
-            <input onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter your search term here" />
-
-            <input type='submit'/>
+            <input type="submit" />
 
         </form>
-
     )
-
 }
 
- 
-
-export default SearchBar
-
-
-
-
-
+export default SeachBar
