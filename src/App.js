@@ -14,18 +14,17 @@ function App() {
   useEffect(() => {
     if (search) {
       const fetchData = async () => {
-        document.title = `${search} Music`
         const url = encodeURI(`https://itunes.apple.com/search?term=${search}`)
         const response = await fetch(url)
-        const resData = await response.json()
+        const data = await response.json()
 
-        if (resData.results.length > 0) {
-          setData(resData.results)
+        if (data.results.length > 0) {
+          setData(data.results)
         } else {
           setData([])
           setMessage('Not Found')
         }
-      }
+      };
 
       fetchData()
     }
